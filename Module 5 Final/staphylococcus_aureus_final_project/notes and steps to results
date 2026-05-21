@@ -1,0 +1,180 @@
+Step 1: Raw Read Quality Control
+Tool Used
+FastQC / Falco
+Purpose of the Step
+The first step was checking the quality of the raw sequencing reads before starting genome assembly. FastQC and Falco were used to assess the sequencing data and identify any issues that could affect subsequent analysis.
+The programs checked:
+Sequence quality
+GC content
+Adapter contamination
+Read length
+Duplicate sequences
+Unknown bases called “N.”
+Why its done
+Raw sequencing reads usually contain low quality sections and leftover adapter sequences. Too many unknown bases mean the sequencing machine could not tell which DNA base belonged there.
+This step was important because poor quality reads can cause problems during:
+Genome assembly
+Gene annotation
+Species identification
+Resistance analysis
+The quality reports indicated that the reads were sufficient to proceed after trimming and cleaning.
+
+Step 2: Read Trimming and Filtering
+Tool Used
+fastp
+Purpose of the Step
+After quality control, Fastp was used to clean the sequencing reads. This tool was removed:
+Low quality bases
+Adapter sequences
+Short reads
+Sequencing errors
+Data Obtained
+One sample started with about:
+18.29 million reads
+After filtering:
+About 17.56 million reads remained
+Why its being done
+This showed that bad quality reads and contaminants were successfully removed while keeping most of the data.
+Cleaning the reads improved:
+Genome assembly accuracy
+Read reliability
+Overall analysis quality
+This step helped make the downstream analysis more accurate and easier to interpret.
+
+Step 3: Genome Assembly
+Tool Used
+SPAdes Genome Assembler
+Purpose of the Step
+SPAdes was used to assemble the cleaned sequencing reads into longer DNA pieces called contigs. The program searched for overlapping sections between reads and joined them to reconstruct the bacterial genome.
+Results Obtained
+The final assembly produced:
+Around 35 contigs
+Genome size between 2.79 and 2.89 Mb
+GC content around 32.7%
+Notes and Interpretation
+These values closely matched known Staphylococcus aureus genomes.
+The lower number of contigs suggested that most of the genome was successfully reconstructed. Even though the genome was not completely closed into one chromosome, the assembly was complete enough for further analysis.
+This step changed the raw sequencing reads into a usable bacterial genome.
+
+Step 4: Assembly Quality Evaluation
+Tool Used
+QUAST
+Purpose of the Step
+QUAST was used to check the quality of the assembled genome. The program looked at:
+Genome size
+Number of contigs
+GC content
+Assembly fragmentation
+Coverage information
+Why its being done
+The assembly statistics matched what is normally expected for Staphylococcus aureus.
+The genome size and GC content appeared biologically reasonable, and the assembly quality was sufficient to proceed with annotation and genome analysis.
+This step was important because poor assemblies can lead to:
+Missing genes
+Incorrect annotations
+False resistance predictions
+Weak comparative genomics results
+
+Step 5: Genome Annotation
+Tool Used
+Prokka
+Purpose of the Step
+Prokka was used to identify genes and functional regions within the assembled genome.
+The annotation process identified:
+Coding genes
+Ribosomal RNA genes
+Transfer RNA genes
+Hypothetical proteins
+Other functional regions
+Why its being done
+This step converted the DNA sequence into interpretable biological information.
+Many genes related to bacterial survival and metabolism were identified throughout the genome. A large number of hypothetical proteins were also found. These are predicted genes whose functions are not yet fully understood.
+Annotation was important because it allowed later identification of:
+Resistance genes
+Survival pathways
+Iron uptake systems
+Virulence related genes
+
+Step 6: Species Identification and Comparative Genomics
+Tools Used
+BLAST
+OrthoANI Calculator
+Purpose of the Step
+BLAST and ANI analysis were used to compare the assembled genome against known bacterial genomes to confirm the species identity.
+ANI Results
+Comparison 1
+ANI value: 97.61%
+Genome coverage: about 64 to 66%
+Comparison 2
+ANI value: 98.81%
+Genome coverage: about 67%
+Comparison 3
+ANI value: 99.00%
+Genome coverage: about 60 to 62%
+Why its being done
+ANI values above 95 percent usually mean two bacteria belong to the same species.
+All three ANI comparisons were above 95 percent, strongly confirming that the isolate was Staphylococcus aureus.
+The highest ANI value, 99 percent, indicated a very close relationship with known Staphylococcus aureus reference genomes.
+The small differences in genome coverage suggested that the isolate may still contain some strain level differences.
+
+Step 7: CRISPR Analysis
+Tool Used
+CRISPRCasFinder
+Purpose of the Step
+CRISPRCasFinder was used to search the genome for:
+CRISPR arrays
+Spacer sequences
+Cas proteins
+Defense related regions
+Results Obtained from this
+Several CRISPR associated regions and evidence scores were identified across the genome.
+Notes and Interpretation
+CRISPR systems work like a bacterial immune system. They help bacteria protect themselves from:
+Viruses
+Foreign DNA
+Plasmids
+The presence of these regions suggested that the Staphylococcus aureus isolate may have defense systems against outside genetic material.
+
+Step 8: Secondary Metabolite Analysis
+Tool Used
+AntiSMASH
+Purpose of the Step
+AntiSMASH was used to identify biosynthetic gene clusters involved in secondary metabolite production.
+These pathways are connected to:
+Iron uptake
+Survival
+Communication
+Environmental adaptation
+Possible pathogenicity
+Results Obtained
+Several important clusters were identified, including:
+Staphyloferrin A
+Staphyloferrin B
+Aureusimine A
+Aureusimine B
+Staphopine related pathways
+NRPS related regions
+Terpene regions
+Cyclic lactone autoinducer pathways
+Why did it all happened
+The staphyloferrin clusters were important because they help Staphylococcus aureus collect iron from the environment. Iron is very important for bacterial growth, especially during infection, where iron is limited.
+The staphopine pathways suggested advanced metal uptake systems that may improve bacterial survival under stressful conditions.
+The NRPS and aureusimine pathways may help with:
+Cell communication
+Stress response
+Bacterial survival
+Possible virulence
+The cyclic lactone autoinducer regions may also help bacteria communicate with each other through quorum sensing.
+
+Step 9: Antimicrobial Resistance Analysis
+Tool Used
+ResFinder
+Purpose of the Step
+ResFinder was used to search the genome for antimicrobial resistance genes.
+Notes and Interpretation
+Resistance related regions were identified within the Staphylococcus aureus genome. These findings suggested that the isolate may contain genes connected to antibiotic resistance or tolerance.
+Resistance genes are important because they may:
+Make antibiotics less effective
+Help bacteria survive treatment
+Increase public health concerns
+This step added important clinical information to the genome analysis.
